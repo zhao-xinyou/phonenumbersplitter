@@ -48,7 +48,7 @@ fixed:
   - '009191'
 
 # 固定電話・専用電話等
-# prefix length -> 
+# length (prefix) -> 
 #                [ prefix -> length (middle number) ... ]
 unfixed:
  5:

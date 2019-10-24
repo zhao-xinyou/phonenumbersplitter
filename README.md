@@ -16,8 +16,8 @@
  echo $provider->getNumberWithoutHyphen(); 
 ```
 
-```output
-      031234-5678 
+```
+031234-5678 
 ```    
 
 ###  ハイフン付

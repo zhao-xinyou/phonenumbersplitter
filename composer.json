@@ -1,10 +1,11 @@
 {
-    "name": "rebib/phonenumber",
-    "description": "Japanese phone number",
+    "name": "rebib/phonenumbersplitter",
+    "description": "ハイフン無しの電話番号をハイフン付の形式に変換する",
     "type": "package",
     "keywords": [        
-        "hyphen",
-        "Japanese phone number"
+        "電話番号",
+        "ハイフン無し",
+        "ハイフン付"
     ],
     "license": "mit",
     "authors": [
@@ -15,7 +16,6 @@
     ],    
     "require": {
         "php": "^7.2",
-        "phpoffice/phpspreadsheet": "^1.9",
         "symfony/yaml": "^4.3"
     },
     "bin": [

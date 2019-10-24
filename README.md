@@ -23,7 +23,7 @@ $ composer require rebib/phonenumbersplitter
 ```
 
 ```
-031234-5678 
+0312345678 
 ```    
 
 ###  ハイフン付

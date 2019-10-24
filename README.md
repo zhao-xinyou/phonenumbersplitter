@@ -2,7 +2,7 @@
 
 
 - ハイフン付き電話番号に分割
-- ハイフン無しの電話番号をハイフン付の形式に変換
+- ハイフン無しの電話番号をハイフン付の形式に復元
 
 ## Installation
 You can install this plugin with Composer.

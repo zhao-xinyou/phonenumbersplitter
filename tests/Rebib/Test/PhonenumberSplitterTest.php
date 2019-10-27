@@ -32,7 +32,6 @@ class PhonenumberSplitterTest extends TestCase
         foreach ($phonenumbers as $phonenumber => $normalizedPhonenumber) {
             $provider = $phonenumberSpliter->normalize($phonenumber);
 
-            print_r($provider->toArray());
             $this->assertEquals($normalizedPhonenumber,
                 $provider->getNumberWithHyphen());
         }

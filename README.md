@@ -10,7 +10,7 @@
 You can install this plugin with Composer.
 
 ```sh
-$ composer require rebib/phonenumbersplitter
+$ composer require rebib/phone-number-splitter
 ```
 
 ## 例

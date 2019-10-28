@@ -26,6 +26,7 @@ class PhonenumberSplitterTest extends TestCase
             '06078273831' => '06-0782-73831',
             '040782-73831' => '04-0782-73831',
             '031-234-5678' => '03-1234-5678',
+            '0801-234-5678' => '080-1234-5678',
         ];
 
         $phonenumberSpliter = new PhonenumberSplitter();

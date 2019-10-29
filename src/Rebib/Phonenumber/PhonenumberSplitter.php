@@ -14,7 +14,7 @@ class PhonenumberSplitter
      * @param string $phonenumber
      * @return PhonenumberProvider
      */
-    public function normalize(string $phonenumber): PhonenumberProvider
+    public function parse(string $phonenumber): PhonenumberProvider
     {
         $patternFile = dirname(__FILE__).'/data/Pattern.yml';
         if (!file_exists($patternFile)) {
@@ -98,5 +98,16 @@ class PhonenumberSplitter
             return new PhonenumberProvider([$phonenumber]);
         }
         return null;
+    }
+
+    /**
+     *
+     * @deprecated since version 1.1.5
+     * @param string $phonenumber
+     * @return \Rebib\Phonenumber\PhonenumberProvider
+     */
+    public function normalize(string $phonenumber): PhonenumberProvider
+    {
+        return $this->parse($phonenumber);
     }
 }

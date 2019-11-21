@@ -16,7 +16,7 @@ $ composer require rebib/phonenumbersplitter
 ## 例
 
 ```php
- $provider = (new Rebib\Phonenumber\PhonenumberSplitter())->parse("031-234-5678");
+ $provider = (new Rebib\Phonenumber\Splitter())->parse("031-234-5678");
  ```
 
 ### ハイフン無し

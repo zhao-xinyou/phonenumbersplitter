@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Rebib\Test;
 
-use Rebib\Phonenumber\PhonenumberSplitter;
+use Rebib\Phonenumber\Splitter;
 use PHPUnit\Framework\TestCase;
 
-class PhonenumberSplitterTest extends TestCase
+class SplitterTest extends TestCase
 {
 
     public function testNormalize(): void
@@ -29,7 +29,7 @@ class PhonenumberSplitterTest extends TestCase
             '0801-234-5678' => '080-1234-5678',
         ];
 
-        $phonenumberSpliter = new PhonenumberSplitter();
+        $phonenumberSpliter = new Splitter();
         foreach ($phonenumbers as $phonenumber => $normalizedPhonenumber) {
             $provider = $phonenumberSpliter->parse($phonenumber);
 

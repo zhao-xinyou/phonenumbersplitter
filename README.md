@@ -82,8 +82,3 @@ echo $splitter->parse('08012345678')->getNumberWithHyphen();
 echo $splitter->parse('031-234-5678')->getNumberWithHyphen();
 // 03-1234-5678
 ```
-
-## 参照
-
-- 総務省 [電気通信番号指定状況](https://www.soumu.go.jp/main_sosiki/joho_tsusin/top/tel_number/number_shitei.html)
-- kennyj [ハイフン付き電話番号に分割](https://qiita.com/mpyw/items/431c0c8cb70084a74be5)

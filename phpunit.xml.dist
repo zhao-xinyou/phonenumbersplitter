@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.5/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
     bootstrap="./vendor/autoload.php"
-    colors="true"
-    cacheDirectory=".phpunit.cache"
->
+    colors="true">
     <testsuites>
         <testsuite name="Rebib Test Suite">
             <directory suffix="Test.php">./tests/Rebib/Test/</directory>
         </testsuite>
     </testsuites>
 
-    <source>
-        <include>
+    <filter>
+        <whitelist>
             <directory suffix=".php">./src/Rebib/</directory>
-        </include>
-    </source>
+        </whitelist>
+    </filter>
 </phpunit>

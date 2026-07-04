@@ -8,6 +8,7 @@
 
 ## Installation
 You can install this plugin with Composer.
+Requires PHP 8.4.1+.
 
 ```sh
 $ composer require rebib/phonenumbersplitter

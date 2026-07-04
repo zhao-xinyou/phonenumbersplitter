@@ -82,3 +82,5 @@ echo $splitter->parse('08012345678')->getNumberWithHyphen();
 echo $splitter->parse('031-234-5678')->getNumberWithHyphen();
 // 03-1234-5678
 ```
+
+Inspired by kennyj's article on splitting Japanese phone numbers.

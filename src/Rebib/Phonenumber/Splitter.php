@@ -17,15 +17,14 @@ class Splitter
     public function parse(string $phonenumber): Provider
     {
         $patternFile = __DIR__.'/data/Pattern.yml';
+        $newPhonenumber = (string) preg_replace("/[^0-9]/", "", $phonenumber);
         if (!file_exists($patternFile)) {
-            return new Provider([$phonenumber]);
+            return new Provider([$newPhonenumber]);
         }
         $patterns = Yaml::parseFile($patternFile);
         if (!is_array($patterns)) {
-            return new Provider([$phonenumber]);
+            return new Provider([$newPhonenumber]);
         }
-
-        $newPhonenumber = (string) preg_replace("/[^0-9]/", "", $phonenumber);
         foreach ($patterns as $p_name => $pattern) {
             if (!is_array($pattern)) {
                 continue;
@@ -40,7 +39,7 @@ class Splitter
             }
         }
 
-        return new Provider([$phonenumber]);
+        return new Provider([$newPhonenumber]);
     }
 
     /**

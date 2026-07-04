@@ -84,3 +84,7 @@ echo $splitter->parse('031-234-5678')->getNumberWithHyphen();
 ```
 
 Inspired by kennyj's article on splitting Japanese phone numbers.
+
+## Reference
+
+- 総務省 [電気通信番号指定状況](https://www.soumu.go.jp/main_sosiki/joho_tsusin/top/tel_number/number_shitei.html)

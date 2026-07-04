@@ -16,15 +16,20 @@ class Splitter
      */
     public function parse(string $phonenumber): Provider
     {
-        $patternFile = dirname(__FILE__).'/data/Pattern.yml';
+        $patternFile = __DIR__.'/data/Pattern.yml';
         if (!file_exists($patternFile)) {
             return new Provider([$phonenumber]);
         }
         $patterns = Yaml::parseFile($patternFile);
+        if (!is_array($patterns)) {
+            return new Provider([$phonenumber]);
+        }
 
-        $newPhonenumber = preg_replace("/[^0-9]/", "", $phonenumber);
-
+        $newPhonenumber = (string) preg_replace("/[^0-9]/", "", $phonenumber);
         foreach ($patterns as $p_name => $pattern) {
+            if (!is_array($pattern)) {
+                continue;
+            }
             $method = 'parse'.$p_name.'Number';
             if (!method_exists($this, $method)) {
                 continue;

@@ -10,9 +10,9 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory suffix=".php">./src/Rebib/</directory>
-        </whitelist>
-    </filter>
+        </include>
+    </coverage>
 </phpunit>

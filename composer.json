@@ -1,5 +1,6 @@
 {
     "name": "rebib/phonenumbersplitter",
+    "version": "2.0.0",
     "description": "ハイフン無しの電話番号をハイフン付の形式に変換する",
     "type": "package",
     "keywords": [        

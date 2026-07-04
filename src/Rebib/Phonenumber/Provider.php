@@ -6,9 +6,9 @@ class Provider
 {
     /**
      *
-     * @var array
+     * @var string[]
      */
-    private $phonenumber;
+    private readonly array $phonenumber;
 
     /**
      * 

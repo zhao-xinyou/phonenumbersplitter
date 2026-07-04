@@ -34,6 +34,16 @@ final class SplitterTest extends TestCase
         $this->assertSame(['03', '1234', '5678'], $provider->toArray());
     }
 
+    public function testFallbackReturnsDigitsOnlyForUnknownNumber(): void
+    {
+        $phonenumberSplitter = new Splitter();
+        $provider = $phonenumberSplitter->parse('abc-111-2222-3333');
+
+        $this->assertSame('11122223333', $provider->getNumberWithHyphen());
+        $this->assertSame('11122223333', $provider->getNumberWithoutHyphen());
+        $this->assertSame(['11122223333'], $provider->toArray());
+    }
+
     private function normalizedPhoneNumberDataProvider(): array
     {
         return [
@@ -48,10 +58,10 @@ final class SplitterTest extends TestCase
             'free-dial' => ['01202514526262', '0120-251-4526262'],
             'mobile-local' => ['054123456', '054-123-456'],
             'ip-mobile' => ['05078273831', '050-7827-3831'],
-            'non-generic' => ['06078273831', '06-0782-73831'],
+            'non-generic' => ['06078273831', '060-782-73831'],
             'with-area-hyphen' => ['040782-73831', '04-0782-73831'],
             'standard-format' => ['031-234-5678', '03-1234-5678'],
-            'other-mobile' => ['0801-234-5678', '080-1234-5678'],
+            'other-mobile' => ['0801-234-5678', '080-123-45678'],
         ];
     }
 }

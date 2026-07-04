@@ -61,7 +61,7 @@ final class SplitterTest extends TestCase
             'non-generic' => ['06078273831', '060-782-73831'],
             'with-area-hyphen' => ['040782-73831', '04-0782-73831'],
             'standard-format' => ['031-234-5678', '03-1234-5678'],
-            'other-mobile' => ['0801-234-5678', '080-123-45678'],
+            'other-mobile' => ['0801-234-5678', '080-1234-5678'],
         ];
     }
 }

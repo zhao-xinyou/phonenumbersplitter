@@ -13,12 +13,14 @@ final class SplitterTest extends TestCase
         $phonenumbers = $this->normalizedPhoneNumberDataProvider();
 
         $phonenumberSplitter = new Splitter();
-        foreach ($phonenumbers as $phonenumber => $normalizedPhonenumber) {
+        foreach ($phonenumbers as $label => $example) {
+            [$phonenumber, $normalizedPhonenumber] = $example;
             $provider = $phonenumberSplitter->parse($phonenumber);
 
             $this->assertSame(
                 $normalizedPhonenumber,
-                $provider->getNumberWithHyphen()
+                $provider->getNumberWithHyphen(),
+                $label
             );
         }
     }

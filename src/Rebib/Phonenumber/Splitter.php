@@ -7,35 +7,48 @@ use Symfony\Component\Yaml\Yaml;
 
 class Splitter
 {
+    /**
+     * @var string[]
+     */
+    private const PATTERN_ORDER = ['emergency', 'fixed', 'unfixed'];
 
     /**
      * Return the phone number with hyphen
-     * 
+     *
      * @param string $phonenumber
      * @return Provider
      */
     public function parse(string $phonenumber): Provider
     {
-        $patternFile = dirname(__FILE__).'/data/Pattern.yml';
-        if (!file_exists($patternFile)) {
+        $patternFile = __DIR__.'/data/Pattern.yml';
+        $normalizedPhonenumber = preg_replace('/\D/', '', $phonenumber);
+        if (!is_string($normalizedPhonenumber) || $normalizedPhonenumber === '') {
             return new Provider([$phonenumber]);
         }
+        if (!file_exists($patternFile)) {
+            return new Provider([$normalizedPhonenumber]);
+        }
+
         $patterns = Yaml::parseFile($patternFile);
+        if (!is_array($patterns)) {
+            return new Provider([$normalizedPhonenumber]);
+        }
 
-        $newPhonenumber = preg_replace("/[^0-9]/", "", $phonenumber);
-
-        foreach ($patterns as $p_name => $pattern) {
-            $method = 'parse'.$p_name.'Number';
-            if (!method_exists($this, $method)) {
+        foreach (self::PATTERN_ORDER as $patternName) {
+            if (!array_key_exists($patternName, $patterns) || !is_array($patterns[$patternName])) {
                 continue;
             }
-            $provider = $this->{$method}($newPhonenumber, $pattern);
-            if ($provider instanceof Provider) {
+            $provider = match ($patternName) {
+                'emergency' => $this->parseEmergencyNumber($normalizedPhonenumber, $patterns[$patternName]),
+                'fixed' => $this->parseFixedNumber($normalizedPhonenumber, $patterns[$patternName]),
+                'unfixed' => $this->parseUnfixedNumber($normalizedPhonenumber, $patterns[$patternName]),
+            };
+            if ($provider !== null) {
                 return $provider;
             }
         }
 
-        return new Provider([$phonenumber]);
+        return new Provider([$normalizedPhonenumber]);
     }
 
     /**
@@ -49,7 +62,7 @@ class Splitter
         foreach ($pattern as $firstLlen => $prefixList) {
             foreach ($prefixList as $prefix => $secondLen) {
                 $prefix = (string) $prefix;
-                if (strpos($phonenumber, $prefix) !== 0) {
+                if (!str_starts_with($phonenumber, $prefix)) {
                     continue;
                 }
                 return new Provider([$prefix,
@@ -71,7 +84,7 @@ class Splitter
         foreach ($pattern as $firstLlen => $prefixList) {
             foreach ($prefixList as $prefix) {
                 $prefix = (string) $prefix;
-                if (strpos($phonenumber, $prefix) !== 0) {
+                if (!str_starts_with($phonenumber, $prefix)) {
                     continue;
                 }
                 return new Provider([$prefix, substr($phonenumber, $firstLlen)]);
@@ -91,7 +104,7 @@ class Splitter
         $len = strlen($phonenumber);
         foreach ($pattern as $prefix => $length) {
             $prefix = (string) $prefix;
-            if ($length != $len || strpos($phonenumber, $prefix) !== 0) {
+            if ((int) $length !== $len || !str_starts_with($phonenumber, $prefix)) {
                 continue;
             }
             return new Provider([$phonenumber]);

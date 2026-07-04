@@ -33,7 +33,7 @@ class SplitterTest extends TestCase
         foreach ($phonenumbers as $phonenumber => $normalizedPhonenumber) {
             $provider = $phonenumberSpliter->parse($phonenumber);
 
-            $this->assertEquals($normalizedPhonenumber,
+            $this->assertSame($normalizedPhonenumber,
                 $provider->getNumberWithHyphen());
         }
     }
